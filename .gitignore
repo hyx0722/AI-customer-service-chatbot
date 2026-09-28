@@ -1,0 +1,37 @@
+# 密钥与本地配置：.env 里有 DEEPSEEK_API_KEY，绝不能进版本库
+.env
+.env.local
+.env.*.local
+
+# Python 构建产物
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+
+# 测试与工具缓存
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# 模型缓存：sentence-transformers / huggingface_hub 下载的权重
+.cache/
+.huggingface/
+
+*.log
+
+# 注意：data/ 下是知识库源文件，属于项目内容，**不要**整体忽略。

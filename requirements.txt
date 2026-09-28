@@ -1,0 +1,36 @@
+# 本项目实际用到的依赖。版本号沿用重构前 requirements-full.txt 中已解析的版本，
+# 没有做任何升级或降级 —— 这只是把「本项目真正 import 的东西」挑出来。
+# 重构前那份 140 行的完整环境快照见 requirements-full.txt。
+
+# --- 对话与 Agent ---
+langchain==1.2.12
+langchain-core==1.2.18
+langchain-community==0.4.1          # TextLoader
+langchain-text-splitters==1.1.1     # RecursiveCharacterTextSplitter
+
+# DeepSeek 供应商。代码里没有显式 import，init_chat_model("deepseek-chat")
+# 靠它注册 provider —— 删掉这个包不会报 ImportError，而是在建模型时报
+# 找不到供应商，属于容易误删的一个。
+langchain-deepseek==1.0.1
+
+# --- LangGraph：checkpointer + 长期记忆 store ---
+langgraph==1.1.2
+# 一个包同时提供 PostgresSaver（langgraph.checkpoint.postgres）
+# 和 PostgresStore（langgraph.store.postgres），不能拆开。
+langgraph-checkpoint-postgres==3.0.5
+
+# --- 向量库与嵌入 ---
+pymilvus==2.6.12
+langchain-huggingface
+sentence-transformers==6.0.1        # HuggingFaceEmbeddings 实际调用的后端
+torch==2.11.0                       # sentence-transformers 的运行时引擎
+
+# --- Postgres 连接 ---
+psycopg[binary]==3.3.4
+psycopg-pool==3.3.1
+
+# --- 配置 ---
+python-dotenv==1.2.3
+
+# --- 测试 ---
+pytest==9.0.3
